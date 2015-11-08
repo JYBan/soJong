@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href = "../static/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	<script src="../static/custom_js.js"></script>
+	<title>Clazie</title>
+	<script>
+		// jquery
+		$('input:checkbox[]')
+
+
+
+
+	</script>
+</head>
+<body>
+
+	<!-- HEADER -->
+	<nav class = "navbar navbar-inverse navbar-static-top" id="top-nav">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href="./index.html">Clazie :: IOException</a>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+	<!-- BODY -->
+	<div id="pr-none">
+		<h3>Setting</h3>
+		<!-- algorithm, sensor file input -->
+		<form action="" method="post" enctype="multipart/form-data" class="form-inline uploadForm" role="form">
+			<div class="form-group">
+				<label for="fileupload" style="margin-right:10px;">Upload Sensor Stream Data :</label>
+				<input type="file" class="form-control input-sm" id="fileupload" name="file">
+			</div>
+			<input type="submit" class="btn btn-default btn-sm"></input>
+		</form>
+		<br>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-success">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						{{message}}
+		  			</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+
+
+		<!-- SHOW : algorithm -->
+		<div class="row">
+			<div class="col-md-6">
+				<h5>Algorithm</h5>
+				<table class="table table-responsive">
+					<tr>
+						<td id="orange_cell"></td>
+						<td name="algoShow">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="gray_cell"></td>
+						<td name="algoShow">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<!-- SHOW : sensor -->
+			<div class="col-md-6">
+				<h5>Sensor</h5>
+				<table class="table table-responsive">
+					<tr>
+						<td id="green_cell"></td>
+						<td name="sensorShow">&nbsp;</td>
+					</tr>
+					<!-- <tr>
+						<td class="gray_cell"></td>
+						<td name="sensorShow">&nbsp;</td>
+					</tr> -->
+				</table>
+			</div>
+		</div>
+
+		<!-- CHECKBOX : algorithm -->
+		<form>
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table table-responsive table-striped checkbox_table">
+						<tbody>
+							<tr>
+								<td><input type="checkbox" id="hoeffdling" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+								<td><label id="hoeffdlingLabel" for="hoeffdling">Hoeffdling Tree</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="sgd" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+								<td><label id="sgdLabel" for="sgd">SGD</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="naive" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+								<td><label id="naiveLabel" for="naive">Naive Bayes</label></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- CHECKBOX : sensor -->
+				<div class="col-md-6">
+					<table class="table table-responsive table-striped checkbox_table">
+						<tbody>
+							{% for sensor in sensorList %}
+								<tr>
+									<td><input type="checkbox" id="{{sensor}}" name="sensorCheck" onclick="sensorCheckboxControl()"></input></td>
+									<td><label id="{{sensor+'Label'}}" for="{{sensor}}">{{sensor}}</label></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div><!-- row end -->
+			<button type="submit" class="btn btn-default" id="btn_start">Start</button>
+		</form>
+
+		<hr>
+
+		<h3>Sensor input</h3>
+		<div id="show_sensor_input"></div>
+		<script>Morris.Line({
+			element: 'show_sensor_input',
+			data: [
+				{ y: '2006', a: 100, b: 90 },
+				{ y: '2007', a: 75,  b: 65 },
+				{ y: '2008', a: 50,  b: 40 },
+				{ y: '2009', a: 75,  b: 65 },
+				{ y: '2010', a: 50,  b: 40 },
+				{ y: '2011', a: 75,  b: 65 },
+				{ y: '2012', a: 100, b: 90 }
+			],
+			xkey: 'y',
+			ykeys: ['a', 'b'],
+			labels: ['green', 'gray'],
+			lineColors: ['green', 'gray'],
+			pointSize: 5,
+		});</script>
+
+		<h3>Class ratio</h3>
+		<table class="ratio_table">
+			<tbody>
+				<tr>
+					<td id="orange_cell_ratio"></td>
+					<td id="gray_cell_ratio"></td>
+				</tr>
+				<tr>
+					<td id="ratio_graph_left">
+						<div id="ratio_left"></div>
+						<script>Morris.Donut({
+							element: 'ratio_left',
+							data: [
+								{label: "class1", value: 12},
+								{label: "class2", value: 30},
+								{label: "class3", value: 20}
+							],
+							colors: ['orange', '#fd9d4c', 'gray'],
+							formatter: function (y, data) { return y + '%' }
+						});</script>
+					</td>
+					<td id="ratio_graph_right">
+						<div id="ratio_right"></div>
+						<script>Morris.Donut({
+							element: 'ratio_right',
+							data: [
+								{label: "class1", value: 12},
+								{label: "class2", value: 30},
+								{label: "class3", value: 20}
+							],
+							colors: ['orange', '#fd9d4c', 'gray'],
+							formatter: function (y, data) { return y + '%' }
+						});</script>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<h3>Analysis</h3>
+
+		<!-- ACCURACY -->
+		<div class="row">
+			<div class="col-md-3">
+				<div id="accuracy_graph"></div>
+				<script>
+				Morris.Bar({
+					element: 'accuracy_graph',
+					data: [
+						{ y: 'accuracy', a: 100, b: 60},
+					],
+					xkey: 'y',
+					ykeys: ['a', 'b'],
+					labels: ['orange', 'gray'],
+					hideHover: 'always',
+					barColors: ['#fd9d4c','gray']
+				});
+				</script>
+			</div>
+			<div class="col-md-9">
+				<div id="CPU_time"></div>
+				<script>Morris.Line({
+					element: 'CPU_time',
+					data: [
+						{ y: '2006', a: 100, b: 90 },
+						{ y: '2007', a: 75,  b: 65 },
+						{ y: '2008', a: 50,  b: 40 },
+						{ y: '2009', a: 75,  b: 65 },
+						{ y: '2010', a: 50,  b: 40 },
+						{ y: '2011', a: 75,  b: 65 },
+						{ y: '2012', a: 100, b: 90 }
+					],
+					xkey: 'y',
+					ykeys: ['a', 'b'],
+					labels: ['orange', 'gray'],
+					lineColors: ['#fd9d4c', 'gray'],
+					pointSize: 5,
+				});</script>
+				<div id="RAM_hour"></div>
+				<script>Morris.Line({
+					element: 'RAM_hour',
+					data: [
+						{ y: '2006', a: 100, b: 90 },
+						{ y: '2007', a: 75,  b: 65 },
+						{ y: '2008', a: 50,  b: 40 },
+						{ y: '2009', a: 75,  b: 65 },
+						{ y: '2010', a: 50,  b: 40 },
+						{ y: '2011', a: 75,  b: 65 },
+						{ y: '2012', a: 100, b: 90 }
+					],
+					xkey: 'y',
+					ykeys: ['a', 'b'],
+					labels: ['orange', 'gray'],
+					lineColors: ['#fd9d4c', 'gray'],
+					pointSize: 5,
+				});</script>
+			</div>
+		</div>
+
+	</div><!-- pr-none end -->
+	<footer><p>copyright © 2015 by IOException</p></footer>
+</body>
+</html>

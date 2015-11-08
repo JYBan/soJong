@@ -1,0 +1,103 @@
+/* BODY */
+#pr-none{
+	width: 60%;
+	margin: 20px auto;
+}
+
+/* UPLOAD FILE */
+.uploadForm{
+	margin-left: 3%;
+}
+
+/* CHOOSE TABLE */
+.row{
+	display: block;
+	margin: 0 auto;
+}
+#orange_cell{
+	background-color: #fd9d4c;
+	width: 40px;
+}
+#green_cell{
+	background-color: green;
+	width: 40px;
+}
+.gray_cell{
+	background-color: gray;
+	width: 40px;
+}
+.checkbox_table > tbody > tr > td{
+	border: dotted;
+	border-width: 1pt;
+}
+.checkbox_table > tbody > tr > td:first-child{
+	width: 40px;
+	text-align: center;
+}
+#btn_start{
+	width: 80%;
+	margin-left: 10%;
+}
+
+
+
+/* SENSOR INPUT GRAPH*/
+#show_sensor_input{
+	width: 100%;
+	height: 150px;
+}
+
+
+
+/* CALSSIFICATION RATIO */
+.ratio_table{
+	width: 96%;
+	margin: 0 auto;
+}
+.ratio_table > tbody > tr > td{
+	width: 50%;
+}
+.ratio_table > tbody > tr:nth-child(2) > td{
+	border: dotted;
+	border-width: 1px;
+}
+#gray_cell_ratio{
+	background-color: gray;
+	height: 25px;
+}
+#orange_cell_ratio{
+	background-color: #fd9d4c;
+	height: 25px;
+}
+#ratio_graph_left{
+	height: 300px;
+}
+#ratio_graph_right{
+	height: 300px;
+}
+
+
+
+
+
+/* PERFORMANCE ANALYSIS */
+.col-md-3{
+	padding-right: 0px;
+	padding-top: 10px;
+}
+#accuracy_graph{
+	margin: 0 auto;
+}
+#CPU_time, #RAM_hour{
+	height: 180px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+
+
+/*FOOTER*/
+footer{
+	text-align: center;
+	margin: 40px;
+}
