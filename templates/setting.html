@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+{% block content %}
+	<!-- BODY -->
+	<h3>Setting</h3>
+	<!-- algorithm, sensor file input -->
+	<form action="" method="post" enctype="multipart/form-data" class="form-inline uploadForm" role="form">
+		<div class="form-group">
+			<label for="fileupload" style="margin-right:10px;">Upload Sensor Stream Data :</label>
+			<input type="file" class="form-control input-sm" id="fileupload" name="file">
+		</div>
+		<input type="submit" class="btn btn-default btn-sm"></input>
+	</form>
+	<br>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					{{message}}
+	  			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	<div class="row">
+		<!-- SHOW : algorithm -->
+		<div class="col-md-6">
+			<h5>Algorithm</h5>
+			<table class="table table-responsive">
+				<tr>
+					<td id="orange_cell"></td>
+					<td name="algoShow">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="gray_cell"></td>
+					<td name="algoShow">&nbsp;</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<!-- SHOW : sensor -->
+		<div class="col-md-6">
+			<h5>Sensor</h5>
+			<table class="table table-responsive">
+				<tr>
+					<td id="green_cell"></td>
+					<td name="sensorShow">&nbsp;</td>
+				</tr>
+				<!-- <tr>
+					<td class="gray_cell"></td>
+					<td name="sensorShow">&nbsp;</td>
+				</tr> -->
+			</table>
+		</div>
+	</div>
+
+	<form>
+		<div class="row">
+			<!-- CHECKBOX : algorithm -->
+			<div class="col-md-6">
+				<table class="table table-responsive table-striped checkbox_table">
+					<tbody>
+						<tr>
+							<td><input type="checkbox" id="hoeffdling" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><label id="hoeffdlingLabel" for="hoeffdling">Hoeffdling Tree</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="sgd" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><label id="sgdLabel" for="sgd">SGD</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="naive" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><label id="naiveLabel" for="naive">Naive Bayes</label></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- CHECKBOX : sensor -->
+			<div class="col-md-6">
+				<table class="table table-responsive table-striped checkbox_table">
+					<tbody>
+						{% for sensor in sensorList %}
+						<tr>
+							<td><input type="checkbox" id="{{sensor}}" name="sensorCheck" onclick="sensorCheckboxControl()"></input></td>
+							<td><label id="{{sensor+'Label'}}" for="{{sensor}}">{{sensor}}</label></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div><!-- row end -->
+		<button onclick="" type="submit" class="btn btn-default" id="btn_start">Start</button>
+	</form>
+{% endblock %}

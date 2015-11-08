@@ -1,0 +1,160 @@
+{% extends "index.html" %}
+{% block content %}
+
+			<!-- SHOW RESULT -->
+			<hr>
+
+			<h3>Sensor input</h3>
+			<div id="show_sensor_input"></div>
+			<script>
+				// Morris.Line({
+				// 	element: 'show_sensor_input',
+				// 	data: [
+				// 		{ y: '2006', a: 100, b: 90 },
+				// 		{ y: '2007', a: 75,  b: 65 },
+				// 		{ y: '2008', a: 50,  b: 40 },
+				// 		{ y: '2009', a: 75,  b: 65 },
+				// 		{ y: '2010', a: 50,  b: 40 },
+				// 		{ y: '2011', a: 75,  b: 65 },
+				// 		{ y: '2012', a: 100, b: 90 }
+				// 	],
+				// 	xkey: 'y',
+				// 	ykeys: ['a', 'b'],
+				// 	labels: ['green', 'gray'],
+				// 	lineColors: ['green', 'gray'],
+				// 	pointSize: 5,
+				// });
+</script>
+
+<pre id="code" class="prettyprint linenums">
+	var nReloads = 0;
+	function data(offset) {
+	var ret = [];
+	for (var y = 0; y <= 360; y += 10) {
+	var v = (offset + y) % 360;
+	ret.push({
+	y: y,
+	a: Math.sin(Math.PI * v / 180).toFixed(4),
+	b: Math.cos(Math.PI * v / 180).toFixed(4)
+});
+}
+return ret;
+}
+var graph_show_sensor_ipnut = Morris.Line({
+element: 'show_sensor_input',
+data: data(0),
+xkey: 'y',
+ykeys: ['a', 'b'],
+labels: ['green', 'gray'],
+lineColors: ['green', 'gray'],
+parseTime: false,
+pointSize: 5,
+hideHover: 'always'
+});
+
+function update_show_sensor_input() {
+nReloads++;
+graph_show_sensor_ipnut.setData(data(5 * nReloads));
+}
+setInterval(update_show_sensor_input, 100);
+</pre>
+
+<h3>Class ratio</h3>
+<table class="ratio_table">
+	<tbody>
+		<tr>
+			<td id="orange_cell_ratio"></td>
+			<td id="gray_cell_ratio"></td>
+		</tr>
+		<tr>
+			<td id="ratio_graph_left">
+				<div id="ratio_left"></div>
+				<script>Morris.Donut({
+					element: 'ratio_left',
+					data: [
+					{label: "class1", value: 12},
+					{label: "class2", value: 30},
+					{label: "class3", value: 20}
+					],
+					colors: ['orange', '#fd9d4c', 'gray'],
+					formatter: function (y, data) { return y + '%' }
+				});</script>
+			</td>
+			<td id="ratio_graph_right">
+				<div id="ratio_right"></div>
+				<script>Morris.Donut({
+					element: 'ratio_right',
+					data: [
+					{label: "class1", value: 12},
+					{label: "class2", value: 30},
+					{label: "class3", value: 20}
+					],
+					colors: ['orange', '#fd9d4c', 'gray'],
+					formatter: function (y, data) { return y + '%' }
+				});</script>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h3>Analysis</h3>
+
+<!-- ACCURACY -->
+<div class="row">
+	<div class="col-md-3">
+		<div id="accuracy_graph"></div>
+		<script>
+		Morris.Bar({
+			element: 'accuracy_graph',
+			data: [
+			{ y: 'accuracy', a: 100, b: 60},
+			],
+			xkey: 'y',
+			ykeys: ['a', 'b'],
+			labels: ['orange', 'gray'],
+			hideHover: 'always',
+			barColors: ['#fd9d4c','gray']
+		});
+		</script>
+	</div>
+	<div class="col-md-9">
+		<div id="CPU_time"></div>
+		<script>Morris.Line({
+			element: 'CPU_time',
+			data: [
+			{ y: '2006', a: 100, b: 90 },
+			{ y: '2007', a: 75,  b: 65 },
+			{ y: '2008', a: 50,  b: 40 },
+			{ y: '2009', a: 75,  b: 65 },
+			{ y: '2010', a: 50,  b: 40 },
+			{ y: '2011', a: 75,  b: 65 },
+			{ y: '2012', a: 100, b: 90 }
+			],
+			xkey: 'y',
+			ykeys: ['a', 'b'],
+			labels: ['orange', 'gray'],
+			lineColors: ['#fd9d4c', 'gray'],
+			pointSize: 5,
+		});</script>
+		<div id="RAM_hour"></div>
+		<script>Morris.Line({
+			element: 'RAM_hour',
+			data: [
+			{ y: '2006', a: 100, b: 90 },
+			{ y: '2007', a: 75,  b: 65 },
+			{ y: '2008', a: 50,  b: 40 },
+			{ y: '2009', a: 75,  b: 65 },
+			{ y: '2010', a: 50,  b: 40 },
+			{ y: '2011', a: 75,  b: 65 },
+			{ y: '2012', a: 100, b: 90 }
+			],
+			xkey: 'y',
+			ykeys: ['a', 'b'],
+			labels: ['orange', 'gray'],
+			lineColors: ['#fd9d4c', 'gray'],
+			pointSize: 5,
+		});</script>
+	</div>
+</div>
+{% endblock %}
