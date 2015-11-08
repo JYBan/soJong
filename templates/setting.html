@@ -55,22 +55,22 @@
 		</div>
 	</div>
 
-	<form>
+	<form action="/result" method="post">
 		<div class="row">
 			<!-- CHECKBOX : algorithm -->
 			<div class="col-md-6">
 				<table class="table table-responsive table-striped checkbox_table">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" id="hoeffdling" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><input value ="hoeffdling" type="checkbox" id="hoeffdling" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
 							<td><label id="hoeffdlingLabel" for="hoeffdling">Hoeffdling Tree</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="sgd" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><input value ="sgd" type="checkbox" id="sgd" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
 							<td><label id="sgdLabel" for="sgd">SGD</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="naive" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
+							<td><input value ="naive" type="checkbox" id="naive" name="algoCheck" onclick="algoCheckboxControl()"></input></td>
 							<td><label id="naiveLabel" for="naive">Naive Bayes</label></td>
 						</tr>
 					</tbody>
@@ -82,7 +82,7 @@
 					<tbody>
 						{% for sensor in sensorList %}
 						<tr>
-							<td><input type="checkbox" id="{{sensor}}" name="sensorCheck" onclick="sensorCheckboxControl()"></input></td>
+							<td><input value="{{sensor}}" type="checkbox" id="{{sensor}}" name="sensorCheck" onclick="sensorCheckboxControl()"></input></td>
 							<td><label id="{{sensor+'Label'}}" for="{{sensor}}">{{sensor}}</label></td>
 						</tr>
 						{% endfor %}
