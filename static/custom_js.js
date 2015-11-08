@@ -60,3 +60,42 @@ function sensorCheckboxControl(){
 		}
 	}
 }
+
+
+
+
+
+
+// 여기서부터 morris chart
+
+// function getXMLHttpRequest(url_param, callback){
+// 	var httpRequest;
+// 	httpRequest = new XMLHttpRequest();
+// 	return(function(ajax, method, url, callback){
+// 		var url = url;
+// 		httpRequest.onreadystatechage = function(){
+// 			if(httpRequest.status === 200 && httpRequest.readyState === 4){
+// 				eval(callback)(httpRequest);
+// 			}
+// 		};
+
+// 		httpRequest.open(method, url, true);
+// 		httpRequest.send(null);
+// 	})(httpRequest, 'GET', url_param, callback);
+// }
+
+// function responseRecv_Method(res){
+// 	console.log(res.responseText);
+// }
+
+// setTimeout(function(){
+// 	getXMLHttpRequest("/morris_data", responseRecv_Method);
+// }, 1000);
+
+
+
+//new
+$(function () {
+  eval($('#code').text());
+});
+

@@ -2,8 +2,8 @@ import os
 from flask import Flask, flash, render_template, request, url_for, redirect, send_from_directory
 from werkzeug import secure_filename
 
-
-UPLOAD_FOLDER = '/Users/Ban/Documents/STUDY/SoftwareCapstoneDesign/workspace/flasktest/uploads/'
+ 
+UPLOAD_FOLDER = '/Users/Ban/Documents/STUDY/SoftwareCapstoneDesign/workspace/flasktest/soJong/uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'csv', 'arff'])
 
 app = Flask(__name__) 
@@ -21,7 +21,7 @@ def uploaded_file(filename):
 #@app.route('/<sensorList>', methods=['GET', 'POST'])
 def upload_file():
 	sensorList=[]
-	dirs = os.listdir('/Users/Ban/Documents/STUDY/SoftwareCapstoneDesign/workspace/flasktest/uploads/')
+	dirs = os.listdir('/Users/Ban/Documents/STUDY/SoftwareCapstoneDesign/workspace/flasktest/soJong/uploads/')
 	for file in dirs:
 		if(file[0]!='.'):
 			sensorList.append(file)
