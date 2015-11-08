@@ -125,6 +125,11 @@
 			<button type="submit" class="btn btn-default" id="btn_start">Start</button>
 		</form>
 
+
+
+
+
+		<!-- SHOW RESULT -->
 		<hr>
 
 		<h3>Sensor input</h3>
@@ -152,32 +157,32 @@
 		<pre id="code" class="prettyprint linenums">
 			var nReloads = 0;
 			function data(offset) {
-			  var ret = [];
-			  for (var y = 0; y <= 360; y += 10) {
-			    var v = (offset + y) % 360;
-			    ret.push({
-			      y: y,
-			      a: Math.sin(Math.PI * v / 180).toFixed(4),
-			      b: Math.cos(Math.PI * v / 180).toFixed(4)
-			    });
-			  }
-			  return ret;
+				var ret = [];
+				for (var y = 0; y <= 360; y += 10) {
+					var v = (offset + y) % 360;
+					ret.push({
+						y: y,
+						a: Math.sin(Math.PI * v / 180).toFixed(4),
+						b: Math.cos(Math.PI * v / 180).toFixed(4)
+					});
+				}
+				return ret;
 			}
-			var graph = Morris.Line({
-			    element: 'show_sensor_input',
-			    data: data(0),
-			    xkey: 'y',
-			    ykeys: ['a', 'b'],
-			    labels: ['green', 'gray'],
-			    lineColors: ['green', 'gray'],
-			    parseTime: false,
-			    pointSize: 5,
-			    hideHover: 'always'
+			var graph_show_sensor_ipnut = Morris.Line({
+				element: 'show_sensor_input',
+				data: data(0),
+				xkey: 'y',
+				ykeys: ['a', 'b'],
+				labels: ['green', 'gray'],
+				lineColors: ['green', 'gray'],
+				parseTime: false,
+				pointSize: 5,
+				hideHover: 'always'
 			});
 
 			function update_show_sensor_input() {
-			  nReloads++;
-			  graph.setData(data(5 * nReloads));
+				nReloads++;
+				graph_show_sensor_ipnut.setData(data(5 * nReloads));
 			}
 			setInterval(update_show_sensor_input, 100);
 		</pre>
