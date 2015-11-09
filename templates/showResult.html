@@ -1,12 +1,43 @@
 {% extends "index.html" %}
 {% block content %}
 
-			<!-- SHOW RESULT -->
-			<hr>
 
-			<h3>Sensor input</h3>
-			<div id="show_sensor_input"></div>
-			<script>
+<!-- SHOW SETTING -->
+
+<h3>Your Setting</h3>
+<div class="row">
+	<!-- SHOW : algorithm -->
+	<div class="col-md-6">
+		<h5>Algorithm</h5>
+		<table class="table table-responsive">
+			<tr>
+				<td id="orange_cell"></td>
+				<td name="algoShow">{{algo[0]}}</td>
+			</tr>
+			<tr>
+				<td class="gray_cell"></td>
+				<td name="algoShow">{{algo[1]}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-md-6">
+		<h5>Sensor</h5>
+		<table class="table table-responsive">
+		<tr>
+			<td id="green_cell"></td>
+			<td name="sensorShow">{{sensor}}</td>
+		</tr>
+		</table>
+	</div>
+</div>
+
+
+<!-- SHOW RESULT -->
+<hr>
+<h3>Sensor input</h3>
+<div id="show_sensor_input"></div>
+<script>
 				// Morris.Line({
 				// 	element: 'show_sensor_input',
 				// 	data: [
