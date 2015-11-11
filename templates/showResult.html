@@ -3,7 +3,6 @@
 
 
 <!-- SHOW SETTING -->
-
 <h3>Your Setting</h3>
 <div class="row">
 	<!-- SHOW : algorithm -->
@@ -33,63 +32,29 @@
 </div>
 
 
+
+
+
+<!-- LOADING -->
+<div class="loading-container">
+    <div class="loading"></div>
+    <div id="loading-text">loading n %</div>
+</div>
+
+
+
+
+
+
+
+
 <!-- SHOW RESULT -->
 <hr>
-<h3>Sensor input</h3>
-<div id="show_sensor_input"></div>
-<script>
-				// Morris.Line({
-				// 	element: 'show_sensor_input',
-				// 	data: [
-				// 		{ y: '2006', a: 100, b: 90 },
-				// 		{ y: '2007', a: 75,  b: 65 },
-				// 		{ y: '2008', a: 50,  b: 40 },
-				// 		{ y: '2009', a: 75,  b: 65 },
-				// 		{ y: '2010', a: 50,  b: 40 },
-				// 		{ y: '2011', a: 75,  b: 65 },
-				// 		{ y: '2012', a: 100, b: 90 }
-				// 	],
-				// 	xkey: 'y',
-				// 	ykeys: ['a', 'b'],
-				// 	labels: ['green', 'gray'],
-				// 	lineColors: ['green', 'gray'],
-				// 	pointSize: 5,
-				// });
-</script>
+<!-- <h3>Sensor input</h3>
+<div id="show_sensor_input"></div> -->
 
-<pre id="code" class="prettyprint linenums">
-	var nReloads = 0;
-	function data(offset) {
-	var ret = [];
-	for (var y = 0; y <= 360; y += 10) {
-	var v = (offset + y) % 360;
-	ret.push({
-	y: y,
-	a: Math.sin(Math.PI * v / 180).toFixed(4),
-	b: Math.cos(Math.PI * v / 180).toFixed(4)
-});
-}
-return ret;
-}
-var graph_show_sensor_ipnut = Morris.Line({
-element: 'show_sensor_input',
-data: data(0),
-xkey: 'y',
-ykeys: ['a', 'b'],
-labels: ['green', 'gray'],
-lineColors: ['green', 'gray'],
-parseTime: false,
-pointSize: 5,
-hideHover: 'always'
-});
 
-function update_show_sensor_input() {
-nReloads++;
-graph_show_sensor_ipnut.setData(data(5 * nReloads));
-}
-setInterval(update_show_sensor_input, 100);
-</pre>
-
+<!-- CLASS RATIO -->
 <h3>Class ratio</h3>
 <table class="ratio_table">
 	<tbody>
@@ -100,92 +65,225 @@ setInterval(update_show_sensor_input, 100);
 		<tr>
 			<td id="ratio_graph_left">
 				<div id="ratio_left"></div>
-				<script>Morris.Donut({
-					element: 'ratio_left',
-					data: [
-					{label: "class1", value: 12},
-					{label: "class2", value: 30},
-					{label: "class3", value: 20}
-					],
-					colors: ['orange', '#fd9d4c', 'gray'],
-					formatter: function (y, data) { return y + '%' }
-				});</script>
 			</td>
 			<td id="ratio_graph_right">
 				<div id="ratio_right"></div>
-				<script>Morris.Donut({
-					element: 'ratio_right',
-					data: [
-					{label: "class1", value: 12},
-					{label: "class2", value: 30},
-					{label: "class3", value: 20}
-					],
-					colors: ['orange', '#fd9d4c', 'gray'],
-					formatter: function (y, data) { return y + '%' }
-				});</script>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-
+<!-- ANALYSIS -->
 <h3>Analysis</h3>
 
-<!-- ACCURACY -->
 <div class="row">
 	<div class="col-md-3">
+		<!-- ACCURACY -->
 		<div id="accuracy_graph"></div>
-		<script>
-		Morris.Bar({
-			element: 'accuracy_graph',
-			data: [
-			{ y: 'accuracy', a: 100, b: 60},
-			],
-			xkey: 'y',
-			ykeys: ['a', 'b'],
-			labels: ['orange', 'gray'],
-			hideHover: 'always',
-			barColors: ['#fd9d4c','gray']
-		});
-		</script>
 	</div>
 	<div class="col-md-9">
+		<!-- CPU TIME -->
 		<div id="CPU_time"></div>
-		<script>Morris.Line({
-			element: 'CPU_time',
-			data: [
-			{ y: '2006', a: 100, b: 90 },
-			{ y: '2007', a: 75,  b: 65 },
-			{ y: '2008', a: 50,  b: 40 },
-			{ y: '2009', a: 75,  b: 65 },
-			{ y: '2010', a: 50,  b: 40 },
-			{ y: '2011', a: 75,  b: 65 },
-			{ y: '2012', a: 100, b: 90 }
-			],
-			xkey: 'y',
-			ykeys: ['a', 'b'],
-			labels: ['orange', 'gray'],
-			lineColors: ['#fd9d4c', 'gray'],
-			pointSize: 5,
-		});</script>
+		<!-- RAM HOUR -->
 		<div id="RAM_hour"></div>
-		<script>Morris.Line({
-			element: 'RAM_hour',
-			data: [
-			{ y: '2006', a: 100, b: 90 },
-			{ y: '2007', a: 75,  b: 65 },
-			{ y: '2008', a: 50,  b: 40 },
-			{ y: '2009', a: 75,  b: 65 },
-			{ y: '2010', a: 50,  b: 40 },
-			{ y: '2011', a: 75,  b: 65 },
-			{ y: '2012', a: 100, b: 90 }
-			],
-			xkey: 'y',
-			ykeys: ['a', 'b'],
-			labels: ['orange', 'gray'],
-			lineColors: ['#fd9d4c', 'gray'],
-			pointSize: 5,
-		});</script>
 	</div>
 </div>
+
+
+
+<!-- SCRIPT -->
+
+<script>
+	// SHOW SENSOR INPUT
+	// var show_sensor_ipnut_nReloads = 0;
+	// function show_sensor_ipnut_data(offset) {
+	// 	var ret = [];
+	// 	for (var y = 0; y <= 360; y += 10) {
+	// 		var v = (offset + y) % 360;
+	// 		ret.push({
+	// 			y: y,
+	// 			a: Math.sin(Math.PI * v / 180).toFixed(4)
+	// 		});
+	// 	}
+	// 	return ret;
+	// }
+	// var graph_show_sensor_ipnut = Morris.Line({
+	// 	element: 'show_sensor_input',
+	// 	data: show_sensor_ipnut_data(0),
+	// 	xkey: 'y',
+	// 	ykeys: 'a',
+	// 	labels: 'green',
+	// 	lineColors: ['green'],
+	// 	parseTime: false,
+	// 	pointSize: 5,
+	// 	hideHover: 'always'
+	// });
+
+	// function update_show_sensor_input() {
+	// 	show_sensor_ipnut_nReloads++;
+	// 	graph_show_sensor_ipnut.setData(show_sensor_ipnut_data(5 * show_sensor_ipnut_nReloads));
+	// }
+
+
+
+	// RATIO LEFT
+	var ratio_left_nReloads3 = 0;
+	function ratio_left_data(offset) {
+		var ret = [];
+		for (var y = 0; y < 3; y++) {
+			var v = (offset + y*10) % 360;
+			ret.push({
+				label: "class"+(y+1)+"",
+				value: Math.random().toFixed(4) * 10
+			});
+		}
+		return ret;
+	}
+	var graph_ratio_left = Morris.Donut({
+		element: 'ratio_left',
+		data: ratio_left_data(0),
+		colors: ['orange', '#fd9d4c', 'gray'],
+		formatter: function (y, data) { return y + '%' }
+	});
+
+	function update_ratio_left() {
+		ratio_left_nReloads3++;
+		graph_ratio_left.setData(ratio_left_data(5 * ratio_left_nReloads3));
+		
+	}
+
+
+
+	// RATIO RIGHT
+	var ratio_right_nReloads3 = 0;
+	function ratio_right_data(offset) {
+		var ret = [];
+		for (var y = 0; y < 3; y++) {
+			var v = (offset + y*10) % 360;
+			ret.push({
+				label: "class"+(y+1)+"",
+				value: Math.random().toFixed(4) * 10
+			});
+		}
+		return ret;
+	}
+	var graph_ratio_right = Morris.Donut({
+		element: 'ratio_right',
+		data: ratio_right_data(0),
+		colors: ['orange', '#fd9d4c', 'gray'],
+		formatter: function (y, data) { return y + '%' }
+	});
+
+	function update_ratio_right() {
+		ratio_right_nReloads3++;
+		graph_ratio_right.setData(ratio_right_data(5 * ratio_right_nReloads3));
+		
+	}
+
+
+	// CPU TIME
+	var CPU_time_nReloads = 0;
+	function CPU_time_data(offset) {
+		var ret = [];
+		for (var y = 0; y <= 360; y += 20) {
+			var v = (offset + y) % 360;
+			ret.push({
+				y: y,
+				a: Math.sin(Math.PI * v / 180).toFixed(4),
+				b: Math.cos(Math.PI * v / 180).toFixed(4)
+			});
+		}
+		return ret;
+	}
+	var graph_CPU_time = Morris.Line({
+		element: 'CPU_time',
+		data: CPU_time_data(0),
+		xkey: 'y',
+		ykeys: ['a', 'b'],
+		labels: ['green', 'gray'],
+		lineColors: ['#fd9d4c', 'gray'],
+		pointSize: 5,
+		hideHover: 'always'
+	});
+
+	function update_CPU_time() {
+		CPU_time_nReloads++;
+		graph_CPU_time.setData(CPU_time_data(5 * CPU_time_nReloads));
+	}
+
+
+	// RAM HOUR
+	var RAM_hour_nReloads = 0;
+	function RAM_hour_data(offset) {
+		var ret = [];
+		for (var y = 0; y <= 360; y += 20) {
+			var v = (offset + y) % 360;
+			ret.push({
+				y: y,
+				a: Math.sin(Math.PI * v / 180).toFixed(4),
+				b: Math.cos(Math.PI * v / 180).toFixed(4)
+			});
+		}
+		return ret;
+	}
+	var graph_RAM_hour = Morris.Line({
+		element: 'RAM_hour',
+		data: RAM_hour_data(0),
+		xkey: 'y',
+		ykeys: ['a', 'b'],
+		labels: ['green', 'gray'],
+		lineColors: ['#fd9d4c', 'gray'],
+		pointSize: 5,
+		hideHover: 'always'
+	});
+
+	function update_RAM_hour() {
+		RAM_hour_nReloads++;
+		graph_RAM_hour.setData(RAM_hour_data(5 * RAM_hour_nReloads));
+	}
+
+
+
+	// ACCURACY
+	var accuracy_nReloads = 0;
+	function accuracy_data(offset){
+		var ret = [];
+		ret.push({
+			y: 'accuracy',
+			a: Math.random().toFixed(4) * 10,
+			b: Math.random().toFixed(4) * 10
+		});
+		return ret;
+	}
+
+	var graph_accuracy = Morris.Bar({
+		element: 'accuracy_graph',
+		data: accuracy_data(0),
+		xkey: 'y',
+		ykeys: ['a', 'b'],
+		labels: ['orange', 'gray'],
+		hideHover: 'always',
+		barColors: ['#fd9d4c','gray']
+	});
+
+	function update_accuracy() {
+		accuracy_nReloads++;
+		graph_accuracy.setData(accuracy_data(5 * accuracy_nReloads));
+	}
+
+
+	// UPDATE
+
+	function update(){
+		//update_show_sensor_input();
+		update_ratio_left();
+		update_ratio_right();
+		update_CPU_time();
+		update_RAM_hour();
+		update_accuracy();
+	}
+	setInterval(update, 1000);
+
+</script>
+
 {% endblock %}

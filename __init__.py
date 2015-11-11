@@ -46,15 +46,11 @@ def show_result():
 		# algo : two of u'hoeffdling', u'sgd' and u'naive' are in list. algo[0] = orange, algo[1] = gray
 		sensor = request.form.get('sensorCheck')
 		# sensor : It's not a list.
+
+
+		
  		return render_template('showResult.html', algo=algo, sensor=sensor);
  	return render_template('error.html'), 404
-
-
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('error.html'), 404
 
 if __name__ == '__main__':
 	app.run(debug=True)

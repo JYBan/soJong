@@ -48,16 +48,14 @@ function sensorCheckboxControl(){
 		alert("센서는 하나만 선택하시죠?");
 	}else{
 		//set panel
-		j=0;
-		for(i=0;i<3;i++){
+		j = 0;
+		for(i=0 ; i < che.length ; i++){
 			if(che[i].checked) {
-				panel[j].innerHTML = document.getElementById(che[i].getAttribute("id")+"Label").innerHTML;
+				panel[0].innerHTML = document.getElementById(che[i].getAttribute("id")+"Label").innerHTML;
 				j++;
 			}
 		}
-		for(;j<2;j++){
-			panel[j].innerHTML="&nbsp;";
-		}
+		if(j==0) panel[0].innerHTML = "&nbsp;";
 	}
 }
 
@@ -95,7 +93,7 @@ function sensorCheckboxControl(){
 
 
 //new
-$(function () {
-  eval($('#code').text());
-});
+// $(function () {
+//   eval($('#code').text());
+// });
 
